@@ -4,7 +4,7 @@ const swaggerAutogen = require('swagger-autogen');
 const doc = {
     info: {
         title: 'Contact API',
-        description: 'API for adding contacts from networking'
+        description: "API for retrieving Bug Bounty Projects information from hunter's own custom API"
     },
     host: 'localhost:3000',
     schemes: ['https']
