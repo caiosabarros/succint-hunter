@@ -13,7 +13,7 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "Root endpoint with documentation of the program.",
         "responses": {
           "200": {
             "description": "OK"
@@ -53,16 +53,20 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Immunefi"
                 },
                 "web3": {
-                  "example": "any"
+                  "type": "bool",
+                  "example": "true"
                 },
                 "url": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "immunefi.com"
                 },
                 "description": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Get access to the most prolific security researchers in the blockchain universe."
                 }
               }
             }
@@ -113,22 +117,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "assets": {
+                "name": {
                   "example": "any"
                 },
-                "language": {
+                "web3": {
                   "example": "any"
                 },
-                "slug": {
-                  "example": "any"
-                },
-                "githubUrl": {
+                "url": {
                   "example": "any"
                 },
                 "description": {
-                  "example": "any"
-                },
-                "maxBounty": {
                   "example": "any"
                 }
               }
@@ -188,13 +186,45 @@
                 "assets": {
                   "type": "array",
                   "items": {
-                    "id": "string",
-                    "revision": "number",
-                    "asset_type": "smart_contract",
-                    "url": "string",
-                    "description": "string",
-                    "isPrimacyOfImpact": null,
-                    "addedAt": "datetime"
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "6dVYzMEdR9WkW706ck4PoZ"
+                      },
+                      "revision": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "type": {
+                        "type": [
+                          "smart_contract",
+                          "websites_and_applications",
+                          "blockchain_dlt"
+                        ],
+                        "example": "smart_contract"
+                      },
+                      "url": {
+                        "type": "string",
+                        "example": "https://basescan.org/address/0xD1A0D188E861ed9d15773a2F3574a2e94134bA8f"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Pinto Protocol"
+                      },
+                      "isPrimacyOfImpact": {
+                        "type": [
+                          "null",
+                          "boolean"
+                        ],
+                        "example": null
+                      },
+                      "addedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-12-04T16:58:00.000Z"
+                      }
+                    }
                   }
                 },
                 "language": {
@@ -262,7 +292,48 @@
               "type": "object",
               "properties": {
                 "assets": {
-                  "example": "any"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "6dVYzMEdR9WkW706ck4PoZ"
+                      },
+                      "revision": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "type": {
+                        "type": [
+                          "smart_contract",
+                          "websites_and_applications",
+                          "blockchain_dlt"
+                        ],
+                        "example": "smart_contract"
+                      },
+                      "url": {
+                        "type": "string",
+                        "example": "https://basescan.org/address/0xD1A0D188E861ed9d15773a2F3574a2e94134bA8f"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Pinto Protocol"
+                      },
+                      "isPrimacyOfImpact": {
+                        "type": [
+                          "null",
+                          "boolean"
+                        ],
+                        "example": null
+                      },
+                      "addedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-12-04T16:58:00.000Z"
+                      }
+                    }
+                  }
                 },
                 "language": {
                   "example": "any"

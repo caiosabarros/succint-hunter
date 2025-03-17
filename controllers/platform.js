@@ -37,12 +37,10 @@ const updatePlatform = async (req, res) => {
     const platformId = new ObjectId(req.params.id);
 
     const platform = {
-        assets: req.body.assets,
-        language: req.body.language,
-        slug: req.body.slug,
-        githubUrl: req.body.githubUrl,
+        name: req.body.name,
+        web3: req.body.web3,
+        url: req.body.url,
         description: req.body.description,
-        maxBounty: req.body.maxBounty,
     };
     const response = await mongodb.getDatabase().db("hunter").collection('platforms').replaceOne({ _id: platformId }, platform);
     if (response.modifiedCount > 0) {
