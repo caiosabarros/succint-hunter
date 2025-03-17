@@ -1,9 +1,10 @@
 const router = require('express').Router();
+const path = require('path');
 
 router.use('/', require('./swagger'));
 
 router.get('/', (req, res) => {
-    res.send('Hello!'); // I can place an HTML documentation here explaining how the API works.
+    res.sendFile(path.join(__dirname, path.join('../doc.html')));
 })
 
 router.use('/platforms', require('./platforms.js'))
