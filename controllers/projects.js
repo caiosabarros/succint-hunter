@@ -7,7 +7,7 @@ const getAll = async (req, res, next) => {
     try {
         const projects = await mongodb.getDatabase().db("hunter").collection('projects').find();
         if (!projects) throw createHttpError(500, "We're unable to check the database");
-        result.toArray().then((projects) => {
+        projects.toArray().then((projects) => {
             res.setHeader('Content-Type', 'application/json')
             res.status(200).json(projects);
         });
