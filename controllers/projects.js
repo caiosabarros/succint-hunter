@@ -5,12 +5,10 @@ const { createHttpError } = require("http-errors");
 
 const getAll = async (req, res, next) => {
     try {
-        const result = await mongodb.getDatabase().db("hunter").collection('projects').find();
-        if (!result) throw createHttpError(500, "We're unable to check the database");
-        result.toArray().then((projects) => {
-            res.setHeader('Content-Type', 'application/json')
-            res.status(200).json(projects);
-        });
+        const projects = await mongodb.getDatabase().db("hunter").collection('projects').find().toArray();
+        if (!projects) throw createHttpError(500, "We're unable to check the database");
+        res.setHeader('Content-Type', 'application/json')
+        res.status(200).json(projects);
     } catch (err) {
         next(err);
     }
@@ -19,7 +17,7 @@ const getAll = async (req, res, next) => {
 const getSingle = async (req, res, next) => {
     const projectId = new ObjectId(req.params.id);
     try {
-        const result = await mongodb.getDatabase().db("hunter").collection('projects').find({ _id: projectId });
+        const result = await mongodb.getDatabase().db("hunter").collection('projects').findOne({ _id: projectId });
         if (!result) throw createHttpError(500, "We're unable to check the database");
         result.toArray().then((projects) => {
             res.setHeader('Content-Type', 'application/json')
