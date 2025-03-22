@@ -19,15 +19,9 @@ app.use((req, res, next) => {
 });
 app.use('/', require('./routes'));
 app.use((error, req, res, next) => {
-    let errorMessage = "An internal error has occurred. Check the parameters you used in this endpoint."
-    let statusCode = 500;
-    if (isHttpError(error)) {
-        statusCode = error.statusCode;
-        errorMessage = error.message;
-    }
-    res.status(statusCode).json({
+    res.status(error.statusCode).json({
         error: {
-            message: errorMessage
+            message: error.message
         }
     });
 })
