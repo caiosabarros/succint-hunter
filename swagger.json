@@ -8,12 +8,13 @@
   "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
     "/": {
       "get": {
-        "description": "Root endpoint with documentation of the program.",
+        "description": "Basic documentation of the program.",
         "responses": {
           "200": {
             "description": "OK"
@@ -21,19 +22,9 @@
         }
       }
     },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/platforms/": {
       "get": {
-        "description": "",
+        "description": "Get the list of platforms. A platform is a website hosting bug bounty programs.",
         "produces": [
           "application/json"
         ],
@@ -44,7 +35,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "Add a new platform to the database.",
         "parameters": [
           {
             "name": "body",
@@ -84,7 +75,7 @@
     },
     "/platforms/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a platform by ID.",
         "produces": [
           "application/json"
         ],
@@ -103,7 +94,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Update information for an existing platform.",
         "parameters": [
           {
             "name": "id",
@@ -143,7 +134,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a specific platform by ID.",
         "parameters": [
           {
             "name": "id",
@@ -164,7 +155,7 @@
     },
     "/projects/": {
       "get": {
-        "description": "",
+        "description": "Get all the projects in all bug bounty platforms.",
         "produces": [
           "application/json"
         ],
@@ -175,7 +166,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "Add a new bug bounty project to the current list.",
         "parameters": [
           {
             "name": "body",
@@ -258,7 +249,7 @@
     },
     "/projects/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a bug bounty project by ID.",
         "produces": [
           "application/json"
         ],
@@ -277,7 +268,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Update an existing bug bounty project by ID.",
         "parameters": [
           {
             "name": "id",
@@ -364,7 +355,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete an existing bug bounty project by ID.",
         "parameters": [
           {
             "name": "id",
