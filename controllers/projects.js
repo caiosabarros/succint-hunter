@@ -21,7 +21,7 @@ const getSingle = async (req, res, next) => {
     try {
         const result = await mongodb.getDatabase().db("hunter").collection('projects').findOne({ _id: projectId });
         if (!result) throw createHttpError(500, "We're unable to find this document");
-        result.toArray().then((projects) => {
+        result.then((projects) => {
             res.setHeader('Content-Type', 'application/json')
             res.status(200).json(projects[0]);
         });
