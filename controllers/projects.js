@@ -18,7 +18,7 @@ const getSingle = async (req, res, next) => {
     const projectId = new ObjectId(req.params.id);
     try {
         const result = await mongodb.getDatabase().db("hunter").collection('projects').findOne({ _id: projectId });
-        if (!result) throw createHttpError(500, "We're unable to check the database");
+        if (!result) throw createHttpError(500, "We're unable to find this document");
         result.toArray().then((projects) => {
             res.setHeader('Content-Type', 'application/json')
             res.status(200).json(projects[0]);
@@ -78,10 +78,11 @@ const deleteProject = async (req, res, next) => {
     const projectId = new ObjectId(req.params.id);
     try {
         const response = await mongodb.getDatabase().db("hunter").collection('projects').deleteOne({ _id: projectId });
+        console.log(response);
         if (response.deletedCount > 0) {
             res.status(204).send();
         } else {
-            throw createHttpError(500, "Error deleting project");
+            throw createHttpError(404, "Error deleting project");
             // res.status(500).json(response.error || "Error deleting project");
         }
     } catch (err) {

@@ -20,7 +20,7 @@ const getSinglePlatform = async (req, res, next) => {
     try {
         const platformId = new ObjectId(req.params.id);
         const result = await mongodb.getDatabase().db("hunter").collection('platforms').findOne({ _id: platformId });
-        if (!result) throw createHttpError(500, "We're unable to check the database");
+        if (!result) throw createHttpError(500, "We're unable to find this document");
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(result);
     } catch (err) {
@@ -78,7 +78,7 @@ const deletePlatform = async (req, res, next) => {
             res.status(204).send();
         } else {
             // res.status(500).json(response.error || "Error deleting platform");
-            if (!response) throw createHttpError(500, "Error deleting platform");
+            throw createHttpError(404, "Error deleting platform");
         }
     } catch (err) {
         next(err);
