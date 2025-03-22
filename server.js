@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongo = require('./data/database');
 const app = express();
+const { isHttpError } = require('http-errors')
+
 
 const port = process.env.PORT || 3000;
 
@@ -16,6 +18,19 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/', require('./routes'));
+app.use((error, req, res, next) => {
+    let errorMessage = "An internal error has occurred. Check the parameters you used in this endpoint."
+    let statusCode = 500;
+    if (isHttpError(error)) {
+        statusCode = error.statusCode;
+        errorMessage = error.message;
+    }
+    res.status(statusCode).json({
+        error: {
+            message: errorMessage
+        }
+    });
+})
 
 mongo.initDb((err) => {
     if (err) {
