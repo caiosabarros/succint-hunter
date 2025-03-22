@@ -20,7 +20,7 @@ const getSinglePlatform = async (req, res, next) => {
     try {
         const platformId = new ObjectId(req.params.id);
         const result = await mongodb.getDatabase().db("hunter").collection('platforms').findOne({ _id: platformId });
-        if (!result) throw createHttpError(500, "We're unable to find this document");
+        if (!result) throw createHttpError(404, "We're unable to find this document");
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(result);
     } catch (err) {

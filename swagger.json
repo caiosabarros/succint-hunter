@@ -30,6 +30,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Not Found"
           }
         }
       },
@@ -162,6 +165,9 @@
           "200": {
             "description": "OK"
           }
+        },
+        "400": {
+          "description": "Not Found"
         }
       },
       "post": {
