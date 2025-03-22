@@ -8,7 +8,6 @@
   "host": "https://succint-hunter.onrender.com/",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
