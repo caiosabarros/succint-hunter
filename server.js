@@ -21,9 +21,9 @@ app.use('/', require('./routes'));
 app.use((error, req, res, next) => {
     let statusCode = error.statusCode || 500;
     let errorMessage = error.message || "Internal Server Error";
-    res.status(error.statusCode).json({
+    res.status(statusCode).json({
         error: {
-            message: error.message
+            message: errorMessage
         }
     });
 })
