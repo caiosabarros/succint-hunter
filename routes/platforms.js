@@ -5,7 +5,7 @@ const { isAuthenticated } = require('./authenticate');
 
 const platformController = require('../controllers/platform');
 router.get('/', platformController.getAllPlatforms);
-router.get('/:id', isAuthenticated, platformController.getSinglePlatform);
+router.get('/:id', platformController.getSinglePlatform);
 router.post('/', isAuthenticated, validationRules()[0], validate, platformController.createPlatform);
 router.put('/:id', isAuthenticated, validationRules()[0], validate, platformController.updatePlatform);
 router.delete('/:id', isAuthenticated, platformController.deletePlatform);
