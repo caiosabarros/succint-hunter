@@ -5,7 +5,7 @@
     "description": "API for retrieving Bug Bounty Projects information from hunter's own custom API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://succint-hunter.onrender.com/",
   "basePath": "/",
   "schemes": [
     "https"
