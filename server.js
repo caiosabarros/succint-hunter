@@ -11,6 +11,11 @@ const { isHttpError } = require('http-errors')
 
 const port = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+});
+
 app.use(bodyParser.json());
 app
     .use(session({
@@ -45,7 +50,7 @@ app
 passport.use(new GithubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL || 'http://localhost:3000/github/callback'
+    callbackURL: process.env.CALLBACK_URL
 },
     function (accessToken, refreshToken, profile, done) {
         return done(null, profile);
@@ -60,9 +65,14 @@ passport.deserializeUser((user, done) => {
 })
 app.get('/', (req, res) => { res.send(req.session.user !== undefined ? `Logged in ${req.session.user.displayName}` : 'Logged Out') });
 
-app.get('/github/callback', passport.authenticate('github', {
-    failureRedirect: '/api-docs',
-}),
+app.get('/github/callback',
+    (req, res, next) => {
+        console.log("GitHub callback hit");
+        next();
+    },
+    passport.authenticate('github', {
+        failureRedirect: '/api-docs',
+    }),
     (req, res) => {
         req.session.user = req.user;
         req.session.save(err => {

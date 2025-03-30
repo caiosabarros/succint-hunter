@@ -23,7 +23,7 @@
     },
     "/login": {
       "get": {
-        "description": "",
+        "description": "LogIn with Github endpoint",
         "responses": {
           "default": {
             "description": ""
@@ -33,7 +33,7 @@
     },
     "/logout": {
       "get": {
-        "description": "",
+        "description": "LogOut endpoint",
         "responses": {
           "default": {
             "description": ""
