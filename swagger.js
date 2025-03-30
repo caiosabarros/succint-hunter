@@ -6,7 +6,7 @@ const doc = {
         title: 'Contact API',
         description: "API for retrieving Bug Bounty Projects information from hunter's own custom API"
     },
-    host: 'https://succint-hunter.onrender.com/',
+    host: 'succint-hunter.onrender.com',
     schemes: ['https']
 };
 
